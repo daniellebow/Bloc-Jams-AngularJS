@@ -22,8 +22,7 @@
           */
           var setSong = function(song) {
           if (currentBuzzObject) {
-         currentBuzzObject.stop();
-         SongPlayer.currentSong.playing = null;
+             stopSong;
          }
 
         currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -43,6 +42,17 @@
           currentBuzzObject.play();
           song.playing = true;
         }
+
+        /**
+        * @function stopSong
+        * @desc Stops currently playing song and loads current audio file as currentBuzzObject
+        * @param {Object} song
+        */
+        var stopSong= function(song){
+          currentBuzzObject.stop();
+          song.playing = null;
+        }
+
 
         /**
         * @function getSongIndex
@@ -97,6 +107,17 @@
      }
 
     };
+
+    /**
+    * @function SongPlayer.next
+    * @desc function to scroll forward onesong
+    * @param {Object}
+    */
+
+    SongPlayer.next = function() {
+    var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+    currentSongIndex++;
+   };
 
      angular
          .module('blocJams')
