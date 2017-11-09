@@ -76,11 +76,23 @@
    SongPlayer.next = function() {
     var currentSongIndex = getSongIndex(SongPlayer.currentSong);
     currentSongIndex++;
+
+    if (currentSongIndex > currentAlbum.length) {
+     currentBuzzObject.stop();
+     SongPlayer.currentSong.playing = null;
+    } else {
+     var song = currentAlbum.songs[currentSongIndex];
+     setSong(song);
+     playSong(song);
+   }
    };
 
-   SongPlayer.setVolume = function(value) {
-   }
-
+   SongPlayer.setVolume = function(volume) {
+     if (currentBuzzObject) {
+       currentBuzzObject.setVolume(volume);
+     }
+     SongPlayer.volume = volume;
+   };
           return SongPlayer;
      }
 
