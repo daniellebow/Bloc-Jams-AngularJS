@@ -11,6 +11,14 @@
          SongPlayer.currentSong = null;
          var currentBuzzObject = null;
 
+         SongPlayer.currentTime=null;
+
+         SongPlayer.setCurrentTime = function(time) {
+         if (currentBuzzObject) {
+        currentBuzzObject.setTime(time);
+       }
+     };
+
          var playSong= function(song){
          currentBuzzObject.play();
          song.playing = true;
